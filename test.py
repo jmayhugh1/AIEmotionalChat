@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import time
 
-openai.api_key = "enter key here"
+openai.api_key = "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"
 
 #setting all the emotions that the ai can feel
 emotionsstring = ""
@@ -15,7 +15,9 @@ emotionsstring = emotionsstring[:-2]
 
 
 #welcome message
-print("Welcome to the Emotion Chatbot. Your ai has access to the following emotions: " + emotionsstring)
+print("Welcome to the Emotion Chatbot")
+print("Your ai has access to these emotions: " + emotionsstring)
+print("To quit the program type quit")
 
 while True:
     
@@ -37,11 +39,12 @@ while True:
     content = response["choices"][0]["message"]["content"]
     emotion = content.split(":")[0].strip()
     content = content.split(":")[1]
+    print(emotion)
     image = mpimg.imread(emotions[emotion])
     
 
     #remove spaces
-    #print(emotion)
+    
     print(content)
     plt.imshow(image)
     plt.show()
