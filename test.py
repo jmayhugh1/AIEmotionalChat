@@ -13,6 +13,8 @@ for emotion in emotions:
     emotionsstring = emotionsstring + emotion + ", "
 emotionsstring = emotionsstring[:-2]
 
+#dictionary of past conversations
+conversations = {}
 
 #welcome message
 print("Welcome to the Emotion Chatbot")
@@ -24,7 +26,7 @@ while True:
     user = input()
     if user == "quit":
         break
-    user_message = " you have 3 emotions" + emotionsstring + " choose the emotion that you think the user wants you to feel followd by a period. then respond to the user with a message that uses that emotion. the format of you response should be Emotion: THE_EMOTION then a newline then ur respone This is the message from the user: " + user
+    user_message = " you have 3 emotions" + emotionsstring + " choose the emotion that you think the user wants you to feel followd by a period. then respond to the user with a message that uses that emotion. the format of you response should be Emotion: THE_EMOTION then a newline then ur respone This is the message from the user: " + user + "this is a dictionary of the previous conversations: " + str(conversations)
     response = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     messages=[{"role": "system", "content": 'Act Like a friend'},
@@ -41,9 +43,9 @@ while True:
     content = content.split(":")[1]
     print(emotion)
     image = mpimg.imread(emotions[emotion])
+    #add the conversation to the list of conversations
+    conversations[user] = content
     
-
-    #remove spaces
     
     print(content)
     plt.imshow(image)
