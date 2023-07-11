@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import time
 
-openai.api_key = "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"
+openai.api_key = "key removed for security"
 
 #setting all the emotions that the ai can feel
 emotionsstring = ""
